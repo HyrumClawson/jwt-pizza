@@ -11,7 +11,10 @@ As part of `Deliverable ⓵ Development deployment: JWT Pizza`, start up the app
 |                                                     |                    |                   |              |
 |                                                     |                    |                   |              |
 | Login new user<br/>(t@jwt.com, pw: test)            | login.tsx|[PUT] /api/auth | SELECT * FROM user WHERE email=? <br> INSERT INTO auth (token, userId) VALUES (?, ?)          |
-| Order pizza                                         | menu.tsx | [GET] /api/order/menu <br> [POST] /api/order <br> [GET] /api/franchise |              |
+| Order pizza                                         | menu.tsx | [GET] /api/order/menu <br> [POST] /api/order <br> [GET] /api/franchise | INSERT INTO dinerOrder (dinerId, franchiseId, storeId, date) VALUES (?, ?, ?, now()) <br> SELECT * FROM menu <br>
+SELECT id, name FROM franchise <br> SELECT id, name FROM store WHERE franchiseId=?|
+
+
 | Verify pizza                                        |                    |                   |              |
 | View profile page                                   |                    |                   |              |
 | View franchise<br/>(as diner)                       |                    |                   |              |
