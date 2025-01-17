@@ -16,9 +16,9 @@ As part of `Deliverable ⓵ Development deployment: JWT Pizza`, start up the app
 | View profile page                                   |dinerDashboard.tsx|   none                |        none      |
 | View franchise<br/>(as diner)                       | franchiseDashboard.tsx|    none        |  none         |
 | Logout                                              |logout.tsx|[DELETE] /api/auth|DELETE FROM auth WHERE token=?|
-| View About page                                     |                    |                   |              |
-| View History page                                   |                    |                   |              |
-| Login as franchisee<br/>(f@jwt.com, pw: franchisee) |                    |                   |              |
+| View About page                                     | about.tsx  | none |   none           |
+| View History page                                   | history.tsx  | none  |  none         |
+| Login as franchisee<br/>(f@jwt.com, pw: franchisee) |login.tsx| [PUT] /api/auth  |SELECT * FROM user WHERE email=? <br> INSERT INTO auth (token, userId) VALUES (?, ?)              |
 | View franchise<br/>(as franchisee)                  |                    |                   |              |
 | Create a store                                      |                    |                   |              |
 | Close a store                                       |                    |                   |              |
