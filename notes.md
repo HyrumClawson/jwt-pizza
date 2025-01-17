@@ -8,7 +8,7 @@ As part of `Deliverable ⓵ Development deployment: JWT Pizza`, start up the app
 | --------------------------------------------------- | ------------------ | ----------------- | ------------ |
 | View home page                                      |   home.jsx         |     none          |      none    |
 | Register new user<br/>(t@jwt.com, pw: test)         |   register.jsx     |  [POST] /api/auth |    INSERT INTO user (name, email, password) VALUES (?, ?, ?) <br> INSERT INTO userRole (userId, role, objectId) VALUES (?, ?, ?)|
-| Login new user<br/>(t@jwt.com, pw: test)            | login.tsx|[PUT] /api/auth | SELECT * FROM user WHERE email=? <br> INSERT INTO auth (token, userId) VALUES (?, ?)          |
+| Login new user<br/>(t@jwt.com, pw: test)            | login.tsx|[PUT] /api/auth | SELECT * FROM user WHERE email=? <br>SELECT * FROM userRole WHERE userId=? <br>INSERT INTO auth (token, userId) VALUES (?, ?)          |
 | Order pizza                                         | menu.tsx | [GET] /api/order/menu <br> [POST] /api/order <br> [GET] /api/franchise | INSERT INTO dinerOrder (dinerId, franchiseId, storeId, date) VALUES (?, ?, ?, now()) <br> SELECT * FROM menu<br>SELECT id, name FROM franchise <br> SELECT id, name FROM store WHERE franchiseId=?|
 | Verify pizza                                        |delivery.tsx |[POST] /api/order/verify| none |
 | View profile page                                   |dinerDashboard.tsx|[GET]/api/order|SELECT id, franchiseId, storeId, date FROM dinerOrder WHERE dinerId=?<br>SELECT id, menuId, description, price FROM orderItem WHERE orderId=?|
