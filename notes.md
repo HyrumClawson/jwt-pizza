@@ -13,7 +13,7 @@ As part of `Deliverable ⓵ Development deployment: JWT Pizza`, start up the app
 | Login new user<br/>(t@jwt.com, pw: test)            | login.tsx|[PUT] /api/auth | SELECT * FROM user WHERE email=? <br> INSERT INTO auth (token, userId) VALUES (?, ?)          |
 | Order pizza                                         | menu.tsx | [GET] /api/order/menu <br> [POST] /api/order <br> [GET] /api/franchise | INSERT INTO dinerOrder (dinerId, franchiseId, storeId, date) VALUES (?, ?, ?, now()) <br> SELECT * FROM menu<br>SELECT id, name FROM franchise <br> SELECT id, name FROM store WHERE franchiseId=?|
 | Verify pizza                                        |delivery.tsx |[POST] /api/order/verify|  (come back to this|
-| View profile page                                   |dinerDashboard.tsx|   none                |        none      |
+| View profile page                                   |dinerDashboard.tsx|[GET]/api/order|SELECT id, franchiseId, storeId, date FROM dinerOrder WHERE dinerId=?<br>SELECT id, menuId, description, price FROM orderItem WHERE orderId=?|
 | View franchise<br/>(as diner)                       | franchiseDashboard.tsx|[GET]/api/franchise/4|  none         |
 | Logout                                              |logout.tsx|[DELETE] /api/auth|DELETE FROM auth WHERE token=?|
 | View About page                                     | about.tsx  | none |   none           |
