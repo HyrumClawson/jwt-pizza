@@ -15,7 +15,7 @@ As part of `Deliverable ⓵ Development deployment: JWT Pizza`, start up the app
 | Verify pizza                                        |delivery.tsx |[POST] /api/order/verify|  (come back to this|
 | View profile page                                   |dinerDashboard.tsx|   none                |        none      |
 | View franchise<br/>(as diner)                       |                    |                   |              |
-| Logout                                              |httpPizzaService.tsx|[DELETE] /api/auth|              |
+| Logout                                              |httpPizzaService.tsx|[DELETE] /api/auth|DELETE FROM auth WHERE token=?|
 | View About page                                     |                    |                   |              |
 | View History page                                   |                    |                   |              |
 | Login as franchisee<br/>(f@jwt.com, pw: franchisee) |                    |                   |              |
