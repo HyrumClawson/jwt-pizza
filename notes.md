@@ -1,4 +1,4 @@
-{# Learning notes
+x{# Learning notes
 
 ## JWT Pizza code study and debugging
 
@@ -23,6 +23,6 @@ As part of `Deliverable ⓵ Development deployment: JWT Pizza`, start up the app
 | Create a store                                      |createStore.tsx |[POST] /api/franchise/1/store |SELECT id, name FROM user WHERE email=?<br>INSERT INTO franchise (name) VALUES (?)<br>INSERT INTO userRole (userId, role, objectId) VALUES (?, ?, ?)|
 | Close a store                                       |closeStore.tsx|[DELETE]/api/franchise/1/store/2|SELECT u.id, u.name, u.email FROM userRole AS ur JOIN user AS u ON u.id=ur.userId WHERE ur.objectId=? AND ur.role='franchisee<br>SELECT s.id, s.name, COALESCE(SUM(oi.price), 0) AS totalRevenue FROM dinerOrder AS do JOIN orderItem AS oi ON do.id=oi.orderId RIGHT JOIN store AS s ON s.id=do.storeId WHERE s.franchiseId=? GROUP BY s.id<br>DELETE FROM store WHERE franchiseId=? AND id=?              |
 | Login as admin<br/>(a@jwt.com, pw: admin)           |login.tsx|[PUT]/api/auth|SELECT * FROM user WHERE email=?<br>SELECT * FROM userRole WHERE userId=?<br>INSERT INTO auth (token, userId) VALUES (?, ?)              |
-| View Admin page                                     |                    |                   |              |
+| View Admin page                                     |adminDashboard.tsx|[GET]/api/franchise|SELECT id, name FROM franchise<br>SELECT id, name FROM store WHERE franchiseId=?|
 | Create a franchise for t@jwt.com                    |                    |                   |              |
 | Close the franchise for t@jwt.com                   |                    |                   |              |
