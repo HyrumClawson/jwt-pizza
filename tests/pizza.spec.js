@@ -392,7 +392,137 @@ test('login franchisee and create then close store', async ({ page }) => {
 
 
 test('login as admin and open new franchise then close it', async ({ page }) => {
+
+  await page.route('*/**/api/auth', async (route) => {
+    const loginReq = {
+      "email": "a@jwt.com",
+      "password": "admin"
+    };
+    const loginRes = {
+      "user": {
+        "id": 1,
+        "name": "常用名字",
+        "email": "a@jwt.com",
+        "roles": [
+          {
+            "role": "admin"
+          }
+        ]
+      },
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6IuW4uOeUqOWQjeWtlyIsImVtYWlsIjoiYUBqd3QuY29tIiwicm9sZXMiOlt7InJvbGUiOiJhZG1pbiJ9XSwiaWF0IjoxNzM5NTI0NzEwfQ.1sy6KWwGYSA6EMTyjWR-5Qnu9w1lcOjyhO1JdEQ3Yvs"
+    };
+    expect(route.request().method()).toBe('PUT');
+    expect(route.request().postDataJSON()).toMatchObject(loginReq);
+    await route.fulfill({ json: loginRes });
+  });
+
+  await page.route('*/**/api/franchise', async (route) => {
   
+    //I know this isn't technically correct... but it'll work
+    // and it shows the functionality of the UI so 
+    const request = route.request();
+    if (request.method() === 'POST') {
+      const franchiseReq = {
+        "stores": [],
+        "id": "",
+        "name": "Happy",
+        "admins": [
+          {
+            "email": "f@jwt.com"
+          }
+        ]
+      };
+      const franchiseRes = {
+        "stores": [],
+        "id": 35,
+        "name": "Happy",
+        "admins": [
+          {
+            "email": "f@jwt.com",
+            "id": 3,
+            "name": "pizza franchisee"
+          }
+        ]
+      };
+      expect(route.request().method()).toBe('POST');
+      expect(route.request().postDataJSON()).toMatchObject(franchiseReq);
+      await route.fulfill({ json: franchiseRes });
+
+
+    }
+
+    else{
+      const franchiseRes = [
+        {
+          "id": 35,
+          "name": "Happy",
+          "admins": [
+            {
+              "id": 3,
+              "name": "pizza franchisee",
+              "email": "f@jwt.com"
+            }
+          ],
+          "stores": []
+        },
+        {
+          "id": 1,
+          "name": "pizzaPocket",
+          "admins": [
+            {
+              "id": 3,
+              "name": "pizza franchisee",
+              "email": "f@jwt.com"
+            }
+          ],
+          "stores": [
+            {
+              "id": 1,
+              "name": "SLC",
+              "totalRevenue": 0
+            }
+          ]
+        },
+        {
+          "id": 9,
+          "name": "yummers",
+          "admins": [
+            {
+              "id": 3,
+              "name": "pizza franchisee",
+              "email": "f@jwt.com"
+            }
+          ],
+          "stores": []
+        },
+        {
+          "id": 2,
+          "name": "YummyPizza",
+          "admins": [
+            {
+              "id": 3,
+              "name": "pizza franchisee",
+              "email": "f@jwt.com"
+            }
+          ],
+          "stores": []
+        }
+      ];
+      expect(route.request().method()).toBe('GET');
+      // expect(route.request().postDataJSON()).toMatchObject(loginReq);
+      await route.fulfill({ json: franchiseRes });
+    }
+  });
+
+
+
+  
+
+
+
+
+
+
   await page.goto('http://localhost:5173/');
   await page.getByRole('link', { name: 'Login' }).click();
   await page.getByRole('textbox', { name: 'Email address' }).fill('a@jwt.com');
