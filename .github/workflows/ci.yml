@@ -52,8 +52,11 @@ jobs:
       id-token: write
     runs-on: ubuntu-latest
     environment:
-      name: production
-      url: https://pizza.hyrumcpizza.click
+      name: staging
+      url: https://stage-pizza.hyrumcpizza.click
+    # environment:
+    #   name: production
+    #   url: https://pizza.hyrumcpizza.click
     env:
       version: ${{needs.build.outputs.version}}
     steps:
