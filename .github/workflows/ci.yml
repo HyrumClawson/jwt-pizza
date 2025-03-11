@@ -54,8 +54,8 @@ jobs:
     environment:
       name: production
       url: https://pizza.hyrumcpizza.click
-    # env:
-    #   version: ${{needs.build.outputs.version}}
+    env:
+      version: ${{needs.build.outputs.version}}
     steps:
       - name: Create OIDC token to AWS
         uses: aws-actions/configure-aws-credentials@v4
