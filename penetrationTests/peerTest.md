@@ -17,7 +17,6 @@
 | Classification    | Injection |
 | Severity  | 4 |
 | Description  | Targeted the updateUser endpoint with sql statements, but was not able to have an effect |
-| Images/more Description  |        <img width="530" alt="Screenshot 2025-04-15 at 6 02 33 PM" src="https://github.com/user-attachments/assets/ccd563c4-99cb-4c5b-a3de-bde1dc44531a" />  <img width="943" alt="Screenshot 2025-04-15 at 5 55 44 PM" src="https://github.com/user-attachments/assets/eec01374-d725-45bb-a1b9-868dde8371b7" />
-          |
+| Images/more Description  |        <img width="530" alt="Screenshot 2025-04-15 at 6 02 33 PM" src="https://github.com/user-attachments/assets/ccd563c4-99cb-4c5b-a3de-bde1dc44531a" />  <img width="943" alt="Screenshot 2025-04-15 at 5 55 44 PM" src="https://github.com/user-attachments/assets/eec01374-d725-45bb-a1b9-868dde8371b7" / |
 | Corrections  | It would appear that a sanitation process has already been implemented on their end of things. Which is fantastic |
 
