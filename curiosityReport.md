@@ -1,1 +1,3 @@
-
+# The Wonderful World of HAR Files 
+Ever since we used HAR files while developing a test with the Grafana K6 service and the main weight of developing those tests was shouldered by simply hitting the button to record a HAR file while one navigated the application as normal, I have come to really respect and admire the HAR file system for the ease of use and for making my life much simpler. Instead of havivng to painfully write out the sequence of requests, responses, and calls to endpoints all that important information is beautifully stored inside of a HAR file which you can then upload whenever. 
+## The History of HAR Files  
